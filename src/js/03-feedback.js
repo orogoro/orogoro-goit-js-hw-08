@@ -11,14 +11,18 @@ feedbackForm.addEventListener('submit', e => {
   localStorage.removeItem(STORAGE_KEY);
 });
 
-feedbackForm.addEventListener('input', e => {
-  let selectedForm = localStorage.getItem(STORAGE_KEY);
-  selectedForm = selectedForm ? JSON.parse(selectedForm) : {};
+feedbackForm.addEventListener(
+  'input',
+  throttle(e => {
+    let selectedForm = localStorage.getItem(STORAGE_KEY);
+    selectedForm = selectedForm ? JSON.parse(selectedForm) : {};
 
-  selectedForm[e.target.name] = e.target.value;
-  let formCurrentTurget = JSON.stringify(selectedForm);
-  localStorage.setItem(STORAGE_KEY, formCurrentTurget);
-});
+    selectedForm[e.target.name] = e.target.value;
+    let formCurrentTurget = JSON.stringify(selectedForm);
+    localStorage.setItem(STORAGE_KEY, formCurrentTurget);
+  }),
+  1000,
+);
 
 function initForm() {
   let saveSelectedForm = localStorage.getItem(STORAGE_KEY);
