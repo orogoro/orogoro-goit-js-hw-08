@@ -6,7 +6,7 @@ const player = new Player(iframe);
 // const player = new Vimeo.Player(iframe);
 const VIDEOPLAYER_KEY = 'videoplayer-current-time';
 
-player.on('timeupdate', throttle(onPlay), 1000);
+player.on('timeupdate', throttle(onPlay));
 
 function onPlay(data) {
   const dataCurrentTime = JSON.stringify(data);
