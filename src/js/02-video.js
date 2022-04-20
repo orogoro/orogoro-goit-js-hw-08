@@ -9,7 +9,6 @@ const VIDEOPLAYER_KEY = 'videoplayer-current-time';
 player.on('timeupdate', throttle(onPlay), 1000);
 
 function onPlay(setCurrentTime) {
-  console.log(setCurrentTime);
   const dataCurrentTime = JSON.stringify(setCurrentTime);
   localStorage.setItem(VIDEOPLAYER_KEY, dataCurrentTime);
 }
